@@ -1,1 +1,0 @@
-<cfoutput>#$.content("body")#</cfoutput>
