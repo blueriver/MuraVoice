@@ -1,0 +1,1 @@
+This a plugin that allows users to submit content and have it voted upon.  Provided "as is".  More info and proper license soon.
