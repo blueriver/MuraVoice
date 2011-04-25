@@ -1,0 +1,58 @@
+<plugin>
+<name>Mura Voice</name>
+<package>muravoice</package>
+<directoryFormat>packageOnly</directoryFormat>
+<version>1.0</version>
+<provider>Blue River</provider>
+<providerURL>http://www.blueriver.com</providerURL>
+<category>Application</category>
+<settings>
+	<setting>
+		<name>maxUserVotes</name>
+		<label>Maximum number of votes available per user</label>
+		<hint>The shows the amount of votes that any given user is allowed to use</hint>
+		<type>text</type>
+		<required>false</required>
+		<validation></validation>
+		<regex></regex>
+		<message></message>
+		<defaultvalue></defaultvalue>
+		<optionlist></optionlist>
+		<optionlabellist></optionlabellist>
+	</setting>
+	<setting>
+		<name>maxVotesPerPage</name>
+		<label>Maximum number of votes per suggestion/page</label>
+		<hint>States how many votes can be associated to a suggestion/page</hint>
+		<type>text</type>
+		<required>false</required>
+		<validation></validation>
+		<regex></regex>
+		<message></message>
+		<defaultvalue>3</defaultvalue>
+		<optionlist></optionlist>
+		<optionlabellist></optionlabellist>
+	</setting>
+	<setting>
+		<name>displayableGroupsByStatus</name>
+		<label>Group statuses via a header in a portal</label>
+		<hint>These are shown at the top of a given voting portal. It acts like a filter for statuses.</hint>
+		<type>text</type>
+		<required>false</required>
+		<validation></validation>
+		<regex></regex>
+		<message></message>
+		<defaultvalue>Open^Rejected^Accepted</defaultvalue>
+		<optionlist></optionlist>
+		<optionlabellist></optionlabellist>
+	</setting>
+</settings>
+
+<eventHandlers>
+	<eventHandler event="onApplicationLoad" component="lib.votingManager" persist="false"/>
+</eventHandlers>
+
+<displayobjects location="global">
+	<!-- <displayobject name="muraProxy" displayMethod="doEvent" component="muraProxy"/> -->
+</displayobjects>
+</plugin>
