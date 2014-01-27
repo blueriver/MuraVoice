@@ -21,12 +21,12 @@
 	<!--- voting dao --->
 	<cfset dao = createObject( "component", "plugins.#pluginConfig.getDirectory()#.lib.votingDAO" ).init() />
 
-	<!--- get voting portals --->
-	<cfset votingPortals = dao.getAllVotingPortals() />
+	<!--- get voting folders --->
+	<cfset votingFolders = dao.getAllVotingFolders() />
 
-	<!--- get all voting portals --->
+	<!--- get all voting folders --->
 	<!---
-	<cfquery name="votingPortals" datasource="#application.configBean.getDatasource()#" username="#application.configBean.getDbUsername()#" password="#application.configBean.getDbPassword()#">
+	<cfquery name="votingFolders" datasource="#application.configBean.getDatasource()#" username="#application.configBean.getDbUsername()#" password="#application.configBean.getDbPassword()#">
 		SELECT
 			*,
 			(
@@ -44,7 +44,7 @@
 			tcontent tcontent1
 		WHERE
 			tcontent1.active = 1
-			and tcontent1.type = 'Portal'
+			and tcontent1.type = 'Folder'
 			and tcontent1.subType = 'Voting'	
 		ORDER BY
 			pageCnt
@@ -70,14 +70,14 @@
 	</cfoutput>
 	<br />
 
-	<cfif votingPortals.recordcount>
+	<cfif votingFolders.recordcount>
 	<!--- loop over protals --->
-	<cfloop query="votingPortals">
+	<cfloop query="votingFolders">
 		
 		<!--- get voting page details --->
-		<cfset votingPageDetails = dao.getVotingPortalPages(
+		<cfset votingPageDetails = dao.getVotingFolderPages(
 			siteId: session.siteId,
-			parentId: votingPortals.contentId,
+			parentId: votingFolders.contentId,
 			type: 'Page',
 			subType: 'Voting',
 			voteStatus=url.voteStatus
@@ -103,7 +103,7 @@
 			WHERE
 				tcontent1.active = 1
 				and tcontent1.siteId = '#session.siteid#'
-				and tcontent1.parentid = '#votingPortals.contentid#'
+				and tcontent1.parentid = '#votingFolders.contentid#'
 				and tcontent1.type = 'Page'
 				and tcontent1.subType = 'Voting'	
 			ORDER BY
@@ -111,7 +111,7 @@
 		</cfquery>
 		--->
 		
-		<h3>Portal: #votingPortals.Title# (#votingPortals.pageCnt# voting pages found)</h3>
+		<h3>Folder: #votingFolders.Title# (#votingFolders.pageCnt# voting pages found)</h3>
 		<table class="stripe">
 			<tr>
 				<th>Title</th>
@@ -138,9 +138,9 @@
 				<tr>
 					<td colspan="4" calss="noresults">
 					<cfif len(url.voteStatus)>
-					This portal current has not items set to "#HTMLEditFormat(url.voteStatus)#".
+					This folder currently has not items set to "#HTMLEditFormat(url.voteStatus)#".
 					<cfelse>
-					This portal contains no items.
+					This folder contains no items.
 					</cfif>
 					</td>
 				</tr>
@@ -149,7 +149,7 @@
 		</table>
 	</cfloop>
 	<cfelse>
-		<p>There are currently no Portals with a sub-type of "Voting" created.</p>
+		<p>There are currently no Folders with a sub-type of "Voting" created.</p>
 	</cfif>
 	</cfoutput>
 	</cfsavecontent>

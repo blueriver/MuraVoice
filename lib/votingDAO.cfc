@@ -47,12 +47,12 @@
 		<cfreturn content />
 	</cffunction>
 	
-	<cffunction name="getAllVotingPortals" access="public" returntype="query" output="false">
+	<cffunction name="getAllVotingFolders" access="public" returntype="query" output="false">
 	
-		<cfset votingPortals = "" />
+		<cfset votingFolders = "" />
 	
 		<!--- get all voting protals --->
-		<cfquery name="votingPortals" datasource="#application.configBean.getDatasource()#" username="#application.configBean.getDbUsername()#" password="#application.configBean.getDbPassword()#">
+		<cfquery name="votingFolders" datasource="#application.configBean.getDatasource()#" username="#application.configBean.getDbUsername()#" password="#application.configBean.getDbPassword()#">
 			SELECT
 				*,
 				(
@@ -71,16 +71,16 @@
 			WHERE
 				tcontent1.active = 1
 				and tcontent1.approved = 1
-				and tcontent1.type = 'Portal'
+				and tcontent1.type = 'Folder'
 				and tcontent1.subType = 'Voting'	
 			ORDER BY
 				pageCnt
 		</cfquery>
 	
-		<cfreturn votingPortals />
+		<cfreturn votingFolders />
 	</cffunction>
 	
-	<cffunction name="getVotingPortalPages" access="public" returntype="any" output="false">
+	<cffunction name="getVotingFolderPages" access="public" returntype="any" output="false">
 		<cfargument name="siteId" type="string" required="true" />
 		<cfargument name="parentId" type="string" required="true" />
 		<cfargument name="voteStatus" type="string" required="false" />
@@ -199,7 +199,7 @@
 					and tclassextenddata.attributeValue like <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.attributeValue#" /> 
 				</cfif>
 				
-				<!--- and tcontent.path like '%[probably a portal with a target subtype]%' --->
+				<!--- and tcontent.path like '%[probably a folder with a target subtype]%' --->
 		</cfquery>
 		
 		<cfreturn voteSum />
