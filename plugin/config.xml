@@ -50,8 +50,8 @@
 	</setting>
 	<setting>
 		<name>displayableGroupsByStatus</name>
-		<label>Group statuses via a header in a portal</label>
-		<hint>These are shown at the top of a given voting portal. It acts like a filter for statuses.</hint>
+		<label>Group statuses via a header in a folder</label>
+		<hint>These are shown at the top of a given voting folder. It acts like a filter for statuses.</hint>
 		<type>text</type>
 		<required>false</required>
 		<validation></validation>
